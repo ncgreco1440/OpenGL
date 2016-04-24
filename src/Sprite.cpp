@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(){};
+Sprite::Sprite() {};
 Sprite::~Sprite()
 {
     if(_vboID != 0)
@@ -10,10 +10,10 @@ Sprite::~Sprite()
     }
 };
 
-void Sprite::init(float xCoord, float yCoord, float width, float height)
+void Sprite::init(float x, float y, float width, float height)
 {
-    _x = xCoord;
-    _y = yCoord;
+    _x = x;
+    _y = y;
     _width = width;
     _height = height;
     
@@ -23,23 +23,59 @@ void Sprite::init(float xCoord, float yCoord, float width, float height)
         glGenVertexArrays(1, &_vaoID);
     }
     
-    float vertexData[12] =
+    Vertex vertexData[6];
+    // First Triangle
+    vertexData[0].position.x = x + width;
+    vertexData[0].position.y = y + height;
+    vertexData[0].position.z = 0.0f;
+    
+    vertexData[1].position.x = x;
+    vertexData[1].position.y = y + height;
+    vertexData[1].position.z = 0.0f;
+    
+    vertexData[2].position.x = x;
+    vertexData[2].position.y = y;
+    vertexData[2].position.z = 0.0f;
+    
+    // Second Triangle
+    vertexData[3].position.x = x;
+    vertexData[3].position.y = y;
+    vertexData[3].position.z = 0.0f;
+    
+    vertexData[4].position.x = x + width;
+    vertexData[4].position.y = y;
+    vertexData[4].position.z = 0.0f;
+    
+    vertexData[5].position.x = x + width;
+    vertexData[5].position.y = y + height;
+    vertexData[5].position.z = 0.0f;
+    
+    for(int i = 0; i < 6; i++)
     {
-        // First Triangle
-        xCoord + width, yCoord + height,
-        xCoord, yCoord + height,
-        xCoord, yCoord,
-        
-        // Second Triangle
-        xCoord, yCoord,
-        xCoord + width, yCoord,
-        xCoord + width, yCoord + height
-    };
+        vertexData[i].color.r = 255;
+        vertexData[i].color.g = 0;
+        vertexData[i].color.b = 255;
+        vertexData[i].color.a = 255;
 
+    }
+    
+    vertexData[1].color.r = 0;
+    vertexData[1].color.g = 0;
+    vertexData[1].color.b = 255;
+    vertexData[1].color.a = 255;
+    
+    vertexData[4].color.r = 0;
+    vertexData[4].color.g = 255;
+    vertexData[4].color.b = 0;
+    vertexData[4].color.a = 255;
+
+    
+    // Vertex Arrays
     glBindVertexArray(_vaoID);
     glBindBuffer(GL_ARRAY_BUFFER, _vboID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    
+
+    // Unbind Everthing
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
@@ -52,13 +88,12 @@ void Sprite::draw()
     
     // Enable the setting of attributes
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
+    glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (GLvoid*)(sizeof(Vertex::position)));
     
     // Draw
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    
-    // Disable the attributes
-    glDisableVertexAttribArray(0);
     
     // Unbind VAO and VBO
     glBindVertexArray(0);

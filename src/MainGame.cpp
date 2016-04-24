@@ -3,10 +3,8 @@
 /**********************************************************!
  * PUBLIC METHODS
  **********************************************************/
-MainGame::MainGame():_window(0), _title(gconf::TITLE), _height(gconf::HEIGHT), _width(gconf::WIDTH), _gameState(GameState::PLAY)
-{
-    //...
-}
+MainGame::MainGame():_window(0), _title(gconf::TITLE), _height(gconf::HEIGHT), _width(gconf::WIDTH),
+    _gameState(GameState::PLAY), _time(0.0f){}
 
 MainGame::~MainGame()
 {
@@ -17,8 +15,7 @@ void MainGame::run()
 {
     try {
         initSystems();
-        _sprite.init(-1.0, -1.0, 1.0, 1.0);
-        _shaders.loadShaders("shader.vert", "shader.frag");
+        _sprite.init(-1.0f, -1.0f, 2.0f, 2.0f);
         std::cout << "Application running, using OpenGL version: "
             << glGetString(GL_SHADING_LANGUAGE_VERSION) << "..." << std::endl;
     } catch (const char * error) {
@@ -61,6 +58,13 @@ void MainGame::initSystems()
     
     // STEP 4, by this step everything has succeeded, set the initial color of the screen
     glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+    initShaders();
+}
+
+void MainGame::initShaders()
+{
+    _colorProgram.compileShaders("shader.vert", "shader.frag");
+    _colorProgram.linkShaders();
 }
 
 void MainGame::setWindowHints()
@@ -74,44 +78,21 @@ void MainGame::setWindowHints()
 
 void MainGame::update()
 {
-    GLfloat triVertices[] = {
-        // Triangle 1
-        -1.0, -1.0,
-        -1.0, 0.0,
-        0.0, 0.0,
-        
-        // Triangle 2
-        -1.0, -1.0,
-        0.0, -1.0,
-        0.0, 0.0
-
-    };
-    
-    // Vertex Buffers
-    GLuint vbo, vao;
-    glGenBuffers(1, &vbo);
-    glGenVertexArrays(1, &vao);
-    
-    // Vertex Arrays
-    glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(triVertices), triVertices, GL_STATIC_DRAW);
-    
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, (GLvoid*)0);
-    
-    glBindVertexArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
     while(!glfwWindowShouldClose(_window))
     {
+        _time += 0.01;
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Do game loop business...
-        _shaders.use();
+        _colorProgram.use();
+        
+        GLuint timeLoc = _colorProgram.getUniformLocation("time");
+        glUniform1f(timeLoc, _time);
+        
         _sprite.draw();
-
+        
+        _colorProgram.unuse();
         glfwSwapBuffers(_window);
     }
 }

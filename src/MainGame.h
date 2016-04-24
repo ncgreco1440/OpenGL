@@ -8,6 +8,7 @@
 #include "Gameconfig.h"
 #include "Sprite.h"
 #include "shaderprog.h"
+#include "glslprogram.h"
 
 enum class GameState {PLAY, EXIT};
 
@@ -20,16 +21,18 @@ public:
     void run();
 private:
     void initSystems();
+    void initShaders();
     void setWindowHints();
     void update();
     
     GLFWwindow * _window;
     const char * _title;
     GLuint _height, _width;
-    GameState _gameState;
-    
     Sprite _sprite;
-    ShaderProg _shaders;
+    GameState _gameState;
+    GLSLProgram _colorProgram;
+    
+    float _time;
 };
 
 #endif
