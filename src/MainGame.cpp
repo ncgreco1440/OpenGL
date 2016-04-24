@@ -10,7 +10,6 @@ MainGame::MainGame():_window(0), _title(gconf::TITLE), _height(gconf::HEIGHT), _
 
 MainGame::~MainGame()
 {
-    //Delete VBOs, VAOs, GLFW instance...
     glfwTerminate();
 }
 
@@ -18,6 +17,8 @@ void MainGame::run()
 {
     try {
         initSystems();
+        _sprite.init(-1.0, -1.0, 1.0, 1.0);
+        _shaders.loadShaders("shader.vert", "shader.frag");
         std::cout << "Application running, using OpenGL version: "
             << glGetString(GL_SHADING_LANGUAGE_VERSION) << "..." << std::endl;
     } catch (const char * error) {
@@ -73,11 +74,44 @@ void MainGame::setWindowHints()
 
 void MainGame::update()
 {
+    GLfloat triVertices[] = {
+        // Triangle 1
+        -1.0, -1.0,
+        -1.0, 0.0,
+        0.0, 0.0,
+        
+        // Triangle 2
+        -1.0, -1.0,
+        0.0, -1.0,
+        0.0, 0.0
+
+    };
+    
+    // Vertex Buffers
+    GLuint vbo, vao;
+    glGenBuffers(1, &vbo);
+    glGenVertexArrays(1, &vao);
+    
+    // Vertex Arrays
+    glBindVertexArray(vao);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triVertices), triVertices, GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, (GLvoid*)0);
+    
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
     while(!glfwWindowShouldClose(_window))
     {
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT);
+        
         //Do game loop business...
+        _shaders.use();
+        _sprite.draw();
+
         glfwSwapBuffers(_window);
     }
 }

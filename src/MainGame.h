@@ -6,6 +6,8 @@
 #include <GL/glfw3.h>
 #include <iostream>
 #include "Gameconfig.h"
+#include "Sprite.h"
+#include "shaderprog.h"
 
 enum class GameState {PLAY, EXIT};
 
@@ -25,6 +27,9 @@ private:
     const char * _title;
     GLuint _height, _width;
     GameState _gameState;
+    
+    Sprite _sprite;
+    ShaderProg _shaders;
 };
 
 #endif
