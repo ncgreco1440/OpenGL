@@ -33,7 +33,7 @@ void GLSLProgram::linkShaders()
 
 GLuint GLSLProgram::getUniformLocation(const std::string& uniformName)
 {
-    GLuint location = glGetUniformLocation(_programID, uniformName.c_str());
+    GLint location = glGetUniformLocation(_programID, uniformName.c_str());
     if(location == GL_INVALID_INDEX)
     {
         std::cerr << "ERROR in [GLSLProgram.getUniformLocation] " + uniformName + " was not found!" << std::endl;

@@ -5,7 +5,7 @@
  **********************************************************/
 const char * gconf::TITLE = "Game Engine";
 const int gconf::HEIGHT = 480;
-const int gconf::WIDTH = HEIGHT * 1.77;
+const int gconf::WIDTH = HEIGHT * 1.78;
 
 /**********************************************************!
  * FUNCTIONS
