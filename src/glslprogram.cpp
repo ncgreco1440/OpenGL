@@ -1,4 +1,4 @@
-#include "glslprogram.h"
+#include <glslprogram.h>
 
 /**********************************************************!
  * PUBLIC METHODS

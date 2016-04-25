@@ -1,4 +1,4 @@
-#include "MainGame.h"
+#include <MainGame.h>
 
 /**********************************************************!
  * PUBLIC METHODS
@@ -63,7 +63,7 @@ void MainGame::initSystems()
 
 void MainGame::initShaders()
 {
-    _colorProgram.compileShaders("shader.vert", "shader.frag");
+    _colorProgram.compileShaders("Shaders/shader.vert", "Shaders/shader.frag");
     _colorProgram.linkShaders();
 }
 

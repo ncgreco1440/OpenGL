@@ -1,4 +1,4 @@
-#include "Gameconfig.h"
+#include <Gameconfig.h>
 
 /**********************************************************!
  * VARIABLES

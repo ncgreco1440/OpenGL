@@ -5,7 +5,7 @@
  *  date:       4/13/16
  *
  */
-#include "MainGame.h"
+#include <MainGame.h>
 #include <iostream>
 
 int main() {
