@@ -21,6 +21,7 @@ struct Color            // 4 bytes
 /*!
  * Make sure that the size of vertex
  * in bytes is a multiple of 4! 
+ * Reason is Matix Multiplication???
  */
 struct Vertex          // 16 bytes
 {
