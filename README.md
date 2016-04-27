@@ -1,5 +1,5 @@
 # OpenGL Start-Up Application
-###Last Updated: (4/25/16)
+###Last Updated: (4/27/16)
 
 This is meant to be a simple start up project for those interested in quickly diving into an OpenGL
 environment to create OpenGL rendered applications without the hassle of bloating your main().
@@ -15,6 +15,6 @@ The reason for this is because many like to compile their own libraries that are
 The libraries REQUIRED are...  
 - [GLFW](http://www.glfw.org/download.html)
 - [GLEW](http://glew.sourceforge.net/)  
-- [SOIL](http://www.lonesock.net/soil.html) (For a lighter solution that is less efficient [**picopng**](http://lodev.org/lodepng/picopng.cpp) is provided with it's header and implementation)
+- [SOIL](http://www.lonesock.net/soil.html) (For a lighter solution that is less efficient [**picopng**](http://lodev.org/lodepng/picopng.cpp) is provided with it's header and implementation, no external library is needed)
 
 This is still a work in progress. More to come...
