@@ -37,7 +37,7 @@ GLuint GLSLProgram::getUniformLocation(const std::string& uniformName)
     if(location == GL_INVALID_INDEX)
     {
         std::cerr << "ERROR in [GLSLProgram.getUniformLocation] " + uniformName + " was not found!" << std::endl;
-        exit(69);
+        exit(101);
     }
     return location;
 }

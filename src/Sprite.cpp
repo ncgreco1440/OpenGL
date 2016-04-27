@@ -10,10 +10,11 @@ Sprite::~Sprite()
     }
 };
 
-void Sprite::init(float x, float y, float width, float height)
+void Sprite::init(float x, float y, float z, float width, float height)
 {
     _x = x;
     _y = y;
+    _z = z;
     _width = width;
     _height = height;
     
@@ -25,50 +26,30 @@ void Sprite::init(float x, float y, float width, float height)
     
     Vertex vertexData[6];
     // First Triangle
-    vertexData[0].position.x = x + width;
-    vertexData[0].position.y = y + height;
-    vertexData[0].position.z = 0.0f;
+    vertexData[0].setPosition(x + width, y + height, z);
+    vertexData[0].setUV(1.0f, 1.0f);
     
-    vertexData[1].position.x = x;
-    vertexData[1].position.y = y + height;
-    vertexData[1].position.z = 0.0f;
+    vertexData[1].setPosition(x, y + height, z);
+    vertexData[1].setUV(0.0f, 1.0f);
     
-    vertexData[2].position.x = x;
-    vertexData[2].position.y = y;
-    vertexData[2].position.z = 0.0f;
+    vertexData[2].setPosition(x, y, z);
+    vertexData[2].setUV(0.0f, 0.0f);
     
     // Second Triangle
-    vertexData[3].position.x = x;
-    vertexData[3].position.y = y;
-    vertexData[3].position.z = 0.0f;
+    vertexData[3].setPosition(x, y, z);
+    vertexData[3].setUV(0.0f, 0.0f);
     
-    vertexData[4].position.x = x + width;
-    vertexData[4].position.y = y;
-    vertexData[4].position.z = 0.0f;
+    vertexData[4].setPosition(x + width, y, z);
+    vertexData[4].setUV(1.0f, 0.0f);
     
-    vertexData[5].position.x = x + width;
-    vertexData[5].position.y = y + height;
-    vertexData[5].position.z = 0.0f;
+    vertexData[5].setPosition(x + width, y + height, z);
+    vertexData[5].setUV(1.0f, 1.0f);
     
     for(int i = 0; i < 6; i++)
-    {
-        vertexData[i].color.r = 255;
-        vertexData[i].color.g = 0;
-        vertexData[i].color.b = 255;
-        vertexData[i].color.a = 255;
-
-    }
+        vertexData[i].setColor(255, 0, 255);
     
-    vertexData[1].color.r = 0;
-    vertexData[1].color.g = 0;
-    vertexData[1].color.b = 255;
-    vertexData[1].color.a = 255;
-    
-    vertexData[4].color.r = 0;
-    vertexData[4].color.g = 255;
-    vertexData[4].color.b = 0;
-    vertexData[4].color.a = 255;
-
+    vertexData[1].setColor(0, 0, 255);
+    vertexData[4].setColor(0, 255, 0);
     
     // Vertex Arrays
     glBindVertexArray(_vaoID);
@@ -89,8 +70,10 @@ void Sprite::draw()
     // Enable the setting of attributes
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)0);
     glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (GLvoid*)(sizeof(Vertex::position)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)(sizeof(Vertex::position) + sizeof(Vertex::color)));
     
     // Draw
     glDrawArrays(GL_TRIANGLES, 0, 6);

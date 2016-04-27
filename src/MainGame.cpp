@@ -1,10 +1,11 @@
 #include <MainGame.h>
+#include "ImageLoader.h"
 
 /**********************************************************!
  * PUBLIC METHODS
  **********************************************************/
 MainGame::MainGame():_window(0), _title(gconf::TITLE), _height(gconf::HEIGHT), _width(gconf::WIDTH),
-    _gameState(GameState::PLAY), _time(0.0f){}
+_gameState(GameState::PLAY), _time(0.0f){}
 
 MainGame::~MainGame()
 {
@@ -15,16 +16,17 @@ void MainGame::run()
 {
     try {
         initSystems();
-        _sprite.init(-1.0f, -1.0f, 2.0f, 2.0f);
+        _sprite.init(-1.0f, -1.0f, 0.0f, 2.0f, 2.0f);
+        _playerTexture = ImageLoader::loadImage("Textures/PNG/CharacterRight_Standing.png");
         std::cout << "Application running, using OpenGL version: "
-            << glGetString(GL_SHADING_LANGUAGE_VERSION) << "..." << std::endl;
+        << glGetString(GL_SHADING_LANGUAGE_VERSION) << "..." << std::endl;
     } catch (const char * error) {
         std::cerr << error << std::endl;
         exit(EXIT_FAILURE);
     }
     update();
     std::cout << "Application ended by the user. \n"
-        << "Goodbye!" << std::endl;
+    << "Goodbye!" << std::endl;
 }
 
 /**********************************************************!
@@ -80,18 +82,23 @@ void MainGame::update()
 {
     while(!glfwWindowShouldClose(_window))
     {
-        _time += 0.01;
+        _time += 0.04;
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT);
         
         //Do game loop business...
         _colorProgram.use();
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, _playerTexture.id);
+        GLint textureLoc = _colorProgram.getUniformLocation("sampleTexture");
+        glUniform1i(textureLoc, 0);
         
         GLuint timeLoc = _colorProgram.getUniformLocation("time");
         glUniform1f(timeLoc, _time);
         
         _sprite.draw();
         
+        glBindTexture(GL_TEXTURE_2D, 0);
         _colorProgram.unuse();
         glfwSwapBuffers(_window);
     }

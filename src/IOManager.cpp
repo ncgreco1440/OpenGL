@@ -1,6 +1,6 @@
 #include <IOManager.h>
 
-bool IOManager::readFileToBuffer(std::string& filePath, std::vector<char>& buffer)
+bool IOManager::readFileToBuffer(const std::string& filePath, std::vector<unsigned char>& buffer)
 {
     //specify that we are reading the file as raw binary
     std::ifstream file(filePath, std::ios::binary);
@@ -17,7 +17,7 @@ bool IOManager::readFileToBuffer(std::string& filePath, std::vector<char>& buffe
     
     buffer.resize(fileSize);
     //point to first address of buffer since that is a char *
-    file.read(&(buffer[0]), fileSize);
+    file.read((char *)&(buffer[0]), fileSize);
     file.close();
     
     return true;                            //Woot

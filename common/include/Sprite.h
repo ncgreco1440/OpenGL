@@ -11,11 +11,12 @@ public:
     Sprite();
     ~Sprite();
     
-    void init(float x, float y, float width, float height);
+    void init(float x, float y, float z, float width, float height);
     void draw();
 private:
-    float _x;
-    float _y;
+    float _x;               // x coordinate
+    float _y;               // y coordinate
+    float _z;               // z coordinate
     float _width;
     float _height;
     GLuint _vboID, _vaoID;

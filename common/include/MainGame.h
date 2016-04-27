@@ -9,6 +9,8 @@
 #include "Sprite.h"
 #include "shaderprog.h"
 #include "glslprogram.h"
+#include "RandomGen.h"
+#include "glTexture.h"
 
 enum class GameState {PLAY, EXIT};
 
@@ -31,6 +33,7 @@ private:
     Sprite _sprite;
     GameState _gameState;
     GLSLProgram _colorProgram;
+    GLTexture _playerTexture;
     
     float _time;
 };
