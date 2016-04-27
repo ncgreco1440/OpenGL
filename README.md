@@ -15,6 +15,6 @@ The reason for this is because many like to compile their own libraries that are
 The libraries REQUIRED are...  
 - [GLFW](http://www.glfw.org/download.html)
 - [GLEW](http://glew.sourceforge.net/)  
-- [SOIL](http://www.lonesock.net/soil.html) (For a lighter solution that is less efficient [**picopng**](http://lodev.org/lodepng/picopng.cpp) is provided with it's header and implementation, no external library is needed)
+- [SOIL](http://www.lonesock.net/soil.html) (For a lighter solution, the less efficient [**picopng**](http://lodev.org/lodepng/picopng.cpp) is provided with it's header and implementation, no external library is needed)
 
 This is still a work in progress. More to come...
