@@ -1,5 +1,7 @@
 # OpenGL Start-Up Application
-###Last Updated: (4/27/16)
+###Last Updated: (4/28/16)  
+
+###Please check the Issues section for any problems
 
 This is meant to be a simple start up project for those interested in quickly diving into an OpenGL
 environment to create OpenGL rendered applications without the hassle of bloating your main().
