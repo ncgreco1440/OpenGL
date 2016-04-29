@@ -5,12 +5,12 @@
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <iostream>
+#include <vector>
 #include "Gameconfig.h"
 #include "Sprite.h"
 #include "shaderprog.h"
 #include "glslprogram.h"
 #include "RandomGen.h"
-#include "glTexture.h"
 
 enum class GameState {PLAY, EXIT};
 
@@ -30,12 +30,12 @@ private:
     GLFWwindow * _window;
     const char * _title;
     GLuint _height, _width;
-    Sprite _sprite;
     GameState _gameState;
     GLSLProgram _colorProgram;
-    GLTexture _playerTexture;
-    
     float _time;
+    
+    //std::vector <Sprite> _sprites;
+    Sprite _spriteArray[2];
 };
 
 #endif

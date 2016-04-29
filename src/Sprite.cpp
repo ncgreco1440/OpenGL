@@ -8,15 +8,17 @@ Sprite::~Sprite()
         glDeleteBuffers(1, &_vboID);
         glDeleteVertexArrays(1, &_vaoID);
     }
+    std::cout << "deleted vbo" << std::endl;
 };
 
-void Sprite::init(float x, float y, float z, float width, float height)
+void Sprite::init(float x, float y, float z, float width, float height, std::string texturePath)
 {
     _x = x;
     _y = y;
     _z = z;
     _width = width;
     _height = height;
+    _texture = ResourceManager::getTexture(texturePath);
     
     if(_vboID == 0)
     {
@@ -63,6 +65,8 @@ void Sprite::init(float x, float y, float z, float width, float height)
 
 void Sprite::draw()
 {
+    glBindTexture(GL_TEXTURE_2D, _texture.id);
+
     // Bind the vertex Array
     glBindVertexArray(_vaoID);
     glBindBuffer(GL_ARRAY_BUFFER, _vboID);
