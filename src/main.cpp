@@ -1,15 +1,8 @@
-/**
- *  OpenGL Startup Application
- *
- *  verion:     1.0.0
- *  date:       4/13/16
- *
- */
-#include <MainGame.h>
-#include <iostream>
+#include "Game.h"
 
-int main() {
-    MainGame mainGame;
-    mainGame.run();
-    return 0;
+int main()
+{
+	Game game;
+	game.run();
+	return 0;
 }
