@@ -14,7 +14,7 @@ public:
     Sprite();
     ~Sprite();
     
-    void init(float x, float y, float z, float width, float height, std::string texturePath);
+    void init(float x, float y, float z, float width, float height, std::string texturePath = "");
     void draw();
     GLuint showText() { return _texture.id; };
 private:

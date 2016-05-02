@@ -34,8 +34,12 @@ private:
     GLSLProgram _colorProgram;
     float _time;
     
-    //std::vector <Sprite> _sprites;
-    Sprite _spriteArray[2];
+    //std::vector <Sprite*> _sprites;
+    //Sprite _spriteArray[1];
+    
+    Sprite _s1;
+    Sprite _s2;
+    Sprite _s3;
 };
 
 #endif

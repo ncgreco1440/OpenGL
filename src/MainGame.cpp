@@ -16,21 +16,10 @@ void MainGame::run()
     try {
         initSystems();
         
-//        _sprites.push_back(Sprite());
-//        _sprites.back().init(-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, "Textures/PNG/CharacterRight_Standing.png");
-//        
-//        _sprites.push_back(Sprite());
-//        _sprites.back().init(0.0f, -1.0f, 0.0f, 1.0f, 1.0f, "Textures/PNG/CharacterRight_Standing.png");
+        // Initialize Sprites
+        _s1.init(0.5f, 0.5f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
+        //_s2.init(0.0f, 0.0f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
         
-        _spriteArray[0].init(-1.0f, -1.0f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
-        _spriteArray[1].init(0.5f, -1.0f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
-//        _spriteArray[2].init(-0.5f, -0.5f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
-//        _spriteArray[3].init(-1.0f, 0.5f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
-//        _spriteArray[4].init(0.0f, 0.5f, 0.0f, 0.5f, 0.5f, "Textures/PNG/CharacterRight_Standing.png");
-
-        
-        std::cout << "Application running, using OpenGL version: "
-        << glGetString(GL_SHADING_LANGUAGE_VERSION) << "..." << std::endl;
     } catch (const char * error) {
         std::cerr << error << std::endl;
         exit(EXIT_FAILURE);
@@ -101,23 +90,16 @@ void MainGame::update()
         //Do game loop business...
         _colorProgram.use();
         glActiveTexture(GL_TEXTURE0);
-        GLint textureLoc = _colorProgram.getUniformLocation("sampleTexture");
-        glUniform1i(textureLoc, 0);
+        //GLint textureLoc = _colorProgram.getUniformLocation("sampleTexture");
+        //glUniform1i(textureLoc, 0);
         
-        GLuint timeLoc = _colorProgram.getUniformLocation("time");
-        glUniform1f(timeLoc, _time);
+        //GLuint timeLoc = _colorProgram.getUniformLocation("time");
+        //glUniform1f(timeLoc, _time);
         
-//        for(int i = 0; i < _sprites.size(); i++)
-//        {
-//            _sprites[i].draw();
-//        }
-        
-        for(int i = 0; i < (sizeof(_spriteArray) / sizeof(_spriteArray[0])); i++)
-        {
-            _spriteArray[i].draw();
-        }
+        _s1.draw();
+        //_s2.draw();
     
-        glBindTexture(GL_TEXTURE_2D, 0);
+        //glBindTexture(GL_TEXTURE_2D, 0);
         _colorProgram.unuse();
         glfwSwapBuffers(_window);
     }

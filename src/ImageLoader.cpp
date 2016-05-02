@@ -1,8 +1,10 @@
 #include "ImageLoader.h"
 #include "IOManager.h"
 #include "picopng.h"
+#include <GL/glew.h>
 #include <SOIL/SOIL.h>
 #include <iostream>
+#include <bitset>
 
 // picoPNG
 GLTexture ImageLoader::loadPNG(const std::string& filePath)

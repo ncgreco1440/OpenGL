@@ -1,4 +1,5 @@
 #include <Sprite.h>
+#include "ImageLoader.h"
 
 Sprite::Sprite() {};
 Sprite::~Sprite()
@@ -18,7 +19,8 @@ void Sprite::init(float x, float y, float z, float width, float height, std::str
     _z = z;
     _width = width;
     _height = height;
-    _texture = ResourceManager::getTexture(texturePath);
+    //_texture = ResourceManager::getTexture(texturePath);
+    _texture = ImageLoader::loadImage(texturePath);
     
     if(_vboID == 0)
     {
@@ -65,7 +67,7 @@ void Sprite::init(float x, float y, float z, float width, float height, std::str
 
 void Sprite::draw()
 {
-    glBindTexture(GL_TEXTURE_2D, _texture.id);
+    //glBindTexture(GL_TEXTURE_2D, _texture.id);
 
     // Bind the vertex Array
     glBindVertexArray(_vaoID);

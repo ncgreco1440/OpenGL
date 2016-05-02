@@ -23,7 +23,7 @@ GLTexture TextureCache::getTexture(std::string key)
     if(mit == _textureMap.end())
     {
         GLTexture newTexture = ImageLoader::loadImage(key);
-        _textureMap.insert(std::pair<std::string, GLTexture>(key, newTexture));
+        _textureMap.insert(std::make_pair(key, newTexture));
         std::cout << "Loaded new texture!" << std::endl;
         return newTexture;
     }
