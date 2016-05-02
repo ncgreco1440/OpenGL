@@ -1,5 +1,5 @@
-# OpenGL Start-Up Application
-###Last Updated: (4/28/16)  
+# OpenGL Start-Up Application v. 1.1.0 (Non-Stable)
+###Last Updated: (05/01/16)  
 
 ###Please check the Issues section for any problems
 
