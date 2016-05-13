@@ -1,0 +1,8 @@
+bin/*
+Debug/*
+Release/*
+common/lib/*
+GameEngine.xcodeproj
+GameEngine.vcxproj
+GameEngine.vcxproj.filters
+GameEngine.vcxproj.user
