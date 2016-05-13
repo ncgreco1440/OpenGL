@@ -8,6 +8,18 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#define USING_STATIC_LIBS
+
+#ifdef USING_STATIC_LIBS
+
+#define GLEW_STATIC
+
+#else
+
+#define GLFW_DLL
+
+#endif
+
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <iostream>
@@ -22,7 +34,6 @@
 
 #include <Renders/renderable2D.h>
 #include <Renders/simple2Drenderer.h>
-
 
 using std::cout;
 using std::endl;

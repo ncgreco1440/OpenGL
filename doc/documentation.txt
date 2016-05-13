@@ -1,0 +1,11 @@
+#OpenGL Start-Up Application  
+
+Getting Started 
+
+1. /Shaders, located in /src, holds all your shader files. You will need to move this folder into whatever Working Directory you specify. Typically this will be whatever directory holds your executable/application.
+
+2. Make sure your libraries are compiled and placed in either /common/lib or if you are using global libaries and remember to tell your project where to find them.
+
+3. All project and third-party header files are located in /common/includes. Make sure your project knows to look in that directory for all header files.
+
+4. All implementation files are located in /src (you may move /Shaders elsewhere but this should be the only directory to move around)

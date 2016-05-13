@@ -12,8 +12,6 @@
 		030EFAEF1CE1478600E80764 /* indexbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 030EFAEB1CE1478600E80764 /* indexbuffer.cpp */; };
 		030EFAF01CE1478600E80764 /* simple2Drenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 030EFAEC1CE1478600E80764 /* simple2Drenderer.cpp */; };
 		030EFAF11CE1478600E80764 /* vertexarray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 030EFAED1CE1478600E80764 /* vertexarray.cpp */; };
-		030EFB051CE14E5A00E80764 /* test.frag in Resources */ = {isa = PBXBuildFile; fileRef = 030EFB031CE14E5A00E80764 /* test.frag */; };
-		030EFB061CE14E5A00E80764 /* test.vert in Resources */ = {isa = PBXBuildFile; fileRef = 030EFB041CE14E5A00E80764 /* test.vert */; };
 		03C860261CDA329A002565C8 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C860251CDA329A002565C8 /* libglfw3.a */; };
 		03C860281CDA32AF002565C8 /* libGLEWd.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C860271CDA32AF002565C8 /* libGLEWd.a */; };
 		03D3FDC91CD806E500804A9E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03D3FDC81CD806E500804A9E /* OpenGL.framework */; };
@@ -46,8 +44,6 @@
 		030EFAEB1CE1478600E80764 /* indexbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = indexbuffer.cpp; path = src/indexbuffer.cpp; sourceTree = SOURCE_ROOT; };
 		030EFAEC1CE1478600E80764 /* simple2Drenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = simple2Drenderer.cpp; path = src/simple2Drenderer.cpp; sourceTree = SOURCE_ROOT; };
 		030EFAED1CE1478600E80764 /* vertexarray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vertexarray.cpp; path = src/vertexarray.cpp; sourceTree = SOURCE_ROOT; };
-		030EFB031CE14E5A00E80764 /* test.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = test.frag; path = bin/Assets/Shaders/test.frag; sourceTree = "<group>"; };
-		030EFB041CE14E5A00E80764 /* test.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = test.vert; path = bin/Assets/Shaders/test.vert; sourceTree = "<group>"; };
 		03B28B451CD803B900C5415E /* GameEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B28B571CD8042400C5415E /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = common/include; sourceTree = SOURCE_ROOT; };
 		03C860251CDA329A002565C8 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "../../../ExternalC++/lib/libglfw3.a"; sourceTree = "<group>"; };
@@ -82,8 +78,6 @@
 		03B28B3C1CD803B900C5415E = {
 			isa = PBXGroup;
 			children = (
-				030EFB031CE14E5A00E80764 /* test.frag */,
-				030EFB041CE14E5A00E80764 /* test.vert */,
 				03C860271CDA32AF002565C8 /* libGLEWd.a */,
 				03C860251CDA329A002565C8 /* libglfw3.a */,
 				03D3FDDD1CD8093500804A9E /* libSOIL.a */,
@@ -178,8 +172,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				030EFB051CE14E5A00E80764 /* test.frag in Resources */,
-				030EFB061CE14E5A00E80764 /* test.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
