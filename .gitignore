@@ -1,14 +1,11 @@
 bin/*
-<<<<<<< HEAD
 Debug/*
 Release/*
-common/lib/*
 GameEngine.xcodeproj
 GameEngine.vcxproj
 GameEngine.vcxproj.filters
 GameEngine.vcxproj.user
-=======
-OpenGLStart.xcodeproj
-common/lib/*
-
->>>>>>> e244012ebc2225e8fa45c5a33c7e92ac23ded6b7
+OpenGL.xcodeproj
+OpenGL.vcxproj
+OpenGL.vcxproj.filters
+OpenGL.vcxproj.user
