@@ -7,7 +7,7 @@ void Monitor::initMonitor()
 	if (_glfwMonitor == 0)
 	{
 		glfwTerminate();
-        gcnfg::fatal_error(-1, "A Primary Monitor was not detected, Program Terminated with exit code -1");
+		gcnfg::fatal_error(-1, "A Primary Monitor was not detected, Program Terminated with exit code -1");
 	}
 	_name = glfwGetMonitorName(_glfwMonitor);
 	_videoMode = glfwGetVideoMode(_glfwMonitor);

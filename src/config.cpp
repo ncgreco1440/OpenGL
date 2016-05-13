@@ -64,12 +64,3 @@ void gcnfg::fatal_error(int errorCode, const std::string& errorMessage)
 	std::cout << "====================================" << std::endl;
 	exit(errorCode);
 }
-
-//extern void fatal_error(int errorCode, const char * errorMessage)
-//{
-//    std::cout << "============\tERROR\t============" << std::endl;
-//    std::cerr << "*** " << errorMessage << std::endl;
-//    std::cerr << "*** " << errorCode << std::endl;
-//    std::cout << "====================================" << std::endl;
-//    exit(errorCode);
-//}

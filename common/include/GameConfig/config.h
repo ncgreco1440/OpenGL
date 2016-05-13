@@ -1,6 +1,7 @@
 #ifndef GAME_CONFIGURATION_H_
 #define GAME_CONFIGURATION_H_
 
+#define GLFW_DLL
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <iostream>
@@ -26,7 +27,6 @@ namespace gcnfg
 	extern void monitor_callback(GLFWmonitor * monitor, int event);
 
     extern void fatal_error(int errorCode, const std::string& errorMessage);
-	//extern void fatal_error(int errorCode, const char * errorMessage);
 }
 
 #endif

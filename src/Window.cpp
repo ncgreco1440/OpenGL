@@ -18,7 +18,6 @@ Window::~Window()
 	cout << "Window Object Destroyed!" << endl;
 }
 
-
 GLFWwindow * Window::getGLFWwindowHandle() const
 {
 	return _glfwWindow;
@@ -41,7 +40,7 @@ void Window::initGLFW()
     
     // Step 2) Set up window hints and error callbacks
     setWindowHints();
-    //glfwSetErrorCallback(gcnfg::fatal_error);
+	//glfwSetErrorCallback(gcnfg::fatal_error);
 
 	// Step 3) Initialize the Monitor
 	_monitor.initMonitor();
@@ -51,6 +50,7 @@ void Window::initGLFW()
 //		_title, _monitor.getGLFWmonitorHandle(), nullptr);
     _glfwWindow = glfwCreateWindow(960, 540,
         _title, nullptr, nullptr);
+
 
 	// Step 5) Confirm GLFW Window was successfully created
 	if (_glfwWindow == 0)

@@ -1,6 +1,7 @@
 #ifndef INPUT_H_
 #define INPUT_H_
 
+#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 
