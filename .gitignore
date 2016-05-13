@@ -9,3 +9,6 @@ OpenGL.xcodeproj
 OpenGL.vcxproj
 OpenGL.vcxproj.filters
 OpenGL.vcxproj.user
+OpenGLStartup.vcxproj
+OpenGLStartup.vcxproj.filters
+OpenGLStartup.vcxproj.user
