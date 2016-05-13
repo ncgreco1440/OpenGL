@@ -1,4 +1,11 @@
+#define OPENGL_DY_IBS
+
+#ifdef OPENGL_STATIC_LIBS
 #define GLEW_STATIC
+#else
+#define GLFW_DLL
+#endif
+
 #include <Game.h>
 
 int main()
