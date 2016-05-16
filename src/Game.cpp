@@ -4,6 +4,7 @@
 Game::Game()
 {
 	cout << "Game Created!" << endl;
+	_window.displayGraphicalInfo();
 }
 
 
