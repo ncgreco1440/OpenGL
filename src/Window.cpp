@@ -46,9 +46,9 @@ void Window::initGLFW()
 	_monitor.initMonitor();
 
 	// Step 4) Create the GLFW Window
-//	_glfwWindow = glfwCreateWindow(_monitor.getScrResWidth(), _monitor.getSrcResHeight(), 
-//		_title, _monitor.getGLFWmonitorHandle(), nullptr);
-    _glfwWindow = glfwCreateWindow(960, 540,
+	/*_glfwWindow = glfwCreateWindow(_monitor.getScrResWidth(), _monitor.getSrcResHeight(), 
+		_title, _monitor.getGLFWmonitorHandle(), nullptr);*/
+   _glfwWindow = glfwCreateWindow(960, 540,
         _title, nullptr, nullptr);
 
 
