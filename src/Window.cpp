@@ -124,4 +124,7 @@ void Window::setAllKeyCallbacks()
 	glfwSetKeyCallback(_glfwWindow, Input::key_callback);
 	glfwSetMouseButtonCallback(_glfwWindow, Input::mouse_btn_callback);
 	glfwSetCursorPosCallback(_glfwWindow, Input::cursor_pos_callback);
+    //glfwSetInputMode(_glfwWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+//    GLFWcursor* cursor = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+//    glfwSetCursor(_glfwWindow, cursor);
 }
