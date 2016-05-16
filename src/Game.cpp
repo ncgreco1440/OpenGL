@@ -38,8 +38,8 @@ void Game::run()
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT);
     
-        shader.setUniform("light_pos", appm::vec2((Input::m_xPos * 16.0f / 960.0f)
-                                                  , (9.0f - Input::m_yPos * 9.0f / 480.0f)));
+        shader.setUniform("light_pos", appm::vec2((Input::m_xPos * 16.0f / 960.0f),
+                                                  (9.0f - Input::m_yPos * 9.0f / 540.0f)));
         
         renderer.submit(&sprite);
         renderer.submit(&sprite2);
@@ -61,7 +61,7 @@ void Game::update()
         cout << "A button is pressed!" << endl;
     if(Input::isMousePressed(GLFW_MOUSE_BUTTON_1))
         cout << "Mouse button 1 is pressed!" << endl;
-    //cout << "Cursor at (" << Input::m_xPos << ", " << Input::m_yPos << ")" << endl;
+    cout << "Cursor at (" << Input::m_xPos << ", " << Input::m_yPos << ")" << endl;
 
 	glfwSwapBuffers(_window.getGLFWwindowHandle());
 }
