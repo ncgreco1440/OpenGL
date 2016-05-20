@@ -39,9 +39,9 @@ void Window::initGLFW()
 		gcnfg::fatal_error(-1, "GLFW Initialization has failed, Program Terminated with exit code -1");
     
     // Step 2) Set up window hints and error callbacks
-    //  This method as it will trigger INVALID ENUM ERROR (1280), but you can ignore it, everything is fine
-    setWindowHints();
-    //glfwSetErrorCallback(gcnfg::fatal_error);
+    setWindowHints();								
+	//glfwSetErrorCallback(gcnfg::fatal_error);
+
 
 	// Step 3) Initialize the Monitor
 	_monitor.initMonitor();
@@ -126,6 +126,6 @@ void Window::setAllKeyCallbacks()
 	glfwSetMouseButtonCallback(_glfwWindow, Input::mouse_btn_callback);
 	glfwSetCursorPosCallback(_glfwWindow, Input::cursor_pos_callback);
     //glfwSetInputMode(_glfwWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-//    GLFWcursor* cursor = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
-//    glfwSetCursor(_glfwWindow, cursor);
+	//GLFWcursor* cursor = glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);
+	//glfwSetCursor(_glfwWindow, cursor);
 }

@@ -27,13 +27,13 @@ void Game::run()
     shader.setUniform("pr_matrix", ortho);
     
     std::vector<Renderable2D*> sprites;
-    RandomGen<float> ranClr(0.0f, 1.0f);
+    SRNG::fRandomGen<float> ranClr(0.0f, 1.0f);
     
     for(float y = 0; y < 9.0f; y++)
     {
         for(float x = 0; x < 16.0f; x++)
         {
-            appm::vec4 newclr(ranClr.getRandom(), ranClr.getRandom(), ranClr.getRandom(), 1.0f);
+            appm::vec4 newclr(ranClr.random_floating(), ranClr.random_floating(), ranClr.random_floating(), 1.0f);
             sprites.push_back(new
 #if BATCH_RENDERER
         Sprite(x, y, 0.9f, 0.9f, newclr));

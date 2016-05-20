@@ -1,13 +1,12 @@
-#define OPENGL_STATIC_IBS
+#define OPENGL_STATIC_LIBS  1
 
-#ifdef OPENGL_STATIC_LIBS
+#if OPENGL_STATIC_LIBS
 #define GLEW_STATIC
 #else
 #define GLFW_DLL
 #endif
 
 #include <Game.h>
-#include <type_traits>
 
 int main()
 {
