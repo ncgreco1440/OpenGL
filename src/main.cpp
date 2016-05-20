@@ -1,4 +1,4 @@
-#define OPENGL_STATIC_IBS
+#define OPENGL_DY_IBS
 
 #ifdef OPENGL_STATIC_LIBS
 #define GLEW_STATIC
