@@ -40,7 +40,7 @@ void Render::init()
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
-    GLushort indices[RENDERER_INDICES_SIZE];
+    GLuint * indices = new GLuint[RENDERER_INDICES_SIZE];
     
     for(int i = 0, offset = 0; i < RENDERER_INDICES_SIZE; i+=6, offset+=4)
     {
@@ -54,8 +54,8 @@ void Render::init()
     }
     
     m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
+	delete[] indices;
     glBindVertexArray(0);
-    
 }
 
 void Render::begin()
@@ -100,7 +100,7 @@ void Render::flush()
     glBindVertexArray(m_VAO);
     m_IBO->bind();
     
-    glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_SHORT, 0);
+    glDrawElements(GL_TRIANGLES, m_IndexCount, GL_UNSIGNED_INT, 0);
     
     m_IBO->unbind();
     glBindVertexArray(0);
