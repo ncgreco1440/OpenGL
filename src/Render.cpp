@@ -42,7 +42,7 @@ void Render::init()
     
     GLushort indices[RENDERER_INDICES_SIZE];
     
-    for(int i, offset = 0; i < RENDERER_INDICES_SIZE; i+=6, offset+=4)
+    for(int i = 0, offset = 0; i < RENDERER_INDICES_SIZE; i+=6, offset+=4)
     {
         indices[i] = offset + 0;
         indices[i + 1] = offset + 1;

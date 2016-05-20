@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <random>
+#include <type_traits>
 
 template<class T>
 class RandomGen
@@ -21,6 +22,11 @@ public:
     {
         std::random_device random_device;
         std::mt19937 mt(random_device());
+        if(std::is_floating_point<T>::value)
+        {
+            std::uniform_real_distribution<T> dist(_min, _max);
+            return dist(mt);
+        }
         std::uniform_int_distribution<T> dist(_min, _max);
         return dist(mt);
     };

@@ -7,6 +7,7 @@
 #endif
 
 #include <Game.h>
+#include <type_traits>
 
 int main()
 {
