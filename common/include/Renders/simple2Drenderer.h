@@ -3,6 +3,7 @@
 
 #include <Renders/renderer2D.h>
 #include <deque>
+#include <StaticSprite.h>
 
 class Simple2DRenderer : Renderer2D
 {
@@ -10,7 +11,7 @@ public:
     void submit(const Renderable2D* renderable) override;
     void flush() override;
 private:
-    std::deque<const Renderable2D*> _renderQueue;
+    std::deque<const StaticSprite*> _renderQueue;
 };
 
 

@@ -1,5 +1,8 @@
 #include <Game.h>
 #include <GameConfig/Input.h>
+#include <vector>
+
+#define BATCH_RENDERER 1
 
 Game::Game()
 {
@@ -22,11 +25,30 @@ void Game::run()
     shader.enable();
     appm::mat4 ortho = appm::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
     shader.setUniform("pr_matrix", ortho);
-    shader.setUniform("ml_matrix", appm::mat4::translation(appm::vec3(4, 3, 0.0)));
     
-    Renderable2D sprite(appm::vec3(5, 5, 0), appm::vec2(4,4), appm::vec4(1, 0, 1, 1), shader);
-    Renderable2D sprite2(appm::vec3(7, 1, 0), appm::vec2(2,3), appm::vec4(0.2f, 0, 1, 1), shader);
+    std::vector<Renderable2D*> sprites;
+    RandomGen<float> ranClr(0.0f, 1.0f);
+    
+    for(float y = 0; y < 9.0f; y++)
+    {
+        for(float x = 0; x < 16.0f; x++)
+        {
+            appm::vec4 newclr(ranClr.getRandom(), ranClr.getRandom(), ranClr.getRandom(), 1.0f);
+            sprites.push_back(new
+#if BATCH_RENDERER
+        Sprite(x, y, 0.9f, 0.9f, newclr));
+#else
+        StaticSprite(x, y, 0.9f, 0.9f, newclr, shader));
+#endif
+        }
+    }
+
+
+#if BATCH_RENDERER
+    Render renderer;
+#else
     Simple2DRenderer renderer;
+#endif
     
     shader.setUniform("light_pos", appm::vec2(4.5f, 1.5f));
     shader.setUniform("colour", appm::vec4(0.0, 0.5, 1.0, 1.0));
@@ -40,9 +62,14 @@ void Game::run()
     
         shader.setUniform("light_pos", appm::vec2((Input::m_xPos * 16.0f / 960.0f),
                                                   (9.0f - Input::m_yPos * 9.0f / 540.0f)));
-        
-        renderer.submit(&sprite);
-        renderer.submit(&sprite2);
+#if BATCH_RENDERER
+        renderer.begin();
+#endif
+        for(auto sp : sprites)
+            renderer.submit(sp);
+#if BATCH_RENDERER
+        renderer.end();
+#endif
         renderer.flush();
 		update();
     }
