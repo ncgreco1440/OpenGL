@@ -7,6 +7,7 @@
 template<class T>
 class RandomGen
 {
+public:
 // Constructor
     RandomGen(T min, T max): _min(min), _max(max) {};
 // Change range

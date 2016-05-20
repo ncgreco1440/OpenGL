@@ -22,7 +22,9 @@
 
 #include <Renders/renderable2D.h>
 #include <Renders/simple2Drenderer.h>
-
+#include <Render/Render.h>
+#include <StaticSprite.h>
+#include <Sprite.h>
 
 using std::cout;
 using std::endl;

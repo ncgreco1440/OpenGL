@@ -7,6 +7,7 @@ class IndexBuffer
 {
 public:
     IndexBuffer(GLushort* data, GLsizei count);
+    ~IndexBuffer();
     
     GLuint getCount() const { return _count; };
     void bind() const;
