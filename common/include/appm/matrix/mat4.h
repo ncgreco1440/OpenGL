@@ -29,11 +29,11 @@ struct mat4
         elements[3 + 3 * 4] = diagonal;
     }
     
-    mat4(const mat4& rhs)
-    {
-        for(int i = 0; i < 16; i++)
-            this->elements[i] = rhs.elements[i];
-    }
+	mat4(const mat4& rhs)
+	{
+		for (int i = 0; i < 16; i++)
+			this->elements[i] = rhs.elements[i];
+	}
     
     static mat4 identity()
     {
@@ -127,6 +127,8 @@ struct mat4
 // Matrix Multiplication
     mat4& multiply(const mat4& rhs)
     {
+		float data[16];
+
         for(int y = 0; y < 4; y++)
         {
             for(int x = 0; x < 4; x++)
@@ -136,9 +138,11 @@ struct mat4
                 {
                     sum += this->elements[x + e * 4] * rhs.elements[e + y * 4];
                 }
-                this->elements[x + y * 4] = sum;
+                //this->elements[x + y * 4] = sum;
+				data[x + y * 4] = sum;
             }
         }
+		memcpy(elements, data, 16 * 4);
         return *this;
     }
     
@@ -160,6 +164,13 @@ struct mat4
             return this->elements[i];
         return 0.0f;
     }
+
+	mat4& operator=(const mat4& rhs)
+	{
+		for (int i = 0; i < 16; i++)
+			this->elements[i] = rhs.elements[i];
+		return *this;
+	}
     
     friend std::ostream& operator<<(std::ostream& os, const mat4& mat)
     {

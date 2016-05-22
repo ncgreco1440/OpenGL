@@ -30,8 +30,8 @@ void Render::init()
     // Color Attribute
     glVertexAttribPointer(SHADER_COLOR_INDEX,
                           4,
-                          GL_FLOAT,
-                          GL_FALSE,
+                          GL_UNSIGNED_BYTE,
+                          GL_TRUE,
                           RENDERER_VERTEX_SIZE,
                           (GLvoid*)(sizeof(VertexData::vertex)));
     
@@ -54,7 +54,7 @@ void Render::init()
     }
     
     m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
-	delete[] indices;
+	//delete[] indices;
     glBindVertexArray(0);
 }
 
@@ -69,21 +69,27 @@ void Render::submit(const Renderable2D *renderable)
     const appm::vec3& position = renderable->getPosition();
     const appm::vec2& size = renderable->getSize();
     const appm::vec4& color = renderable->getColor();
+	int r = color.r * 255.0f;
+	int g = color.g * 255.0f;
+	int b = color.b * 255.0f;
+	int a = color.a * 255.0f;
+
+	unsigned int c = a << 24 | b << 16 | g << 8 | r;
     
     m_Buffer->vertex = position;
-    m_Buffer->color = color;
+    m_Buffer->color = c;
     m_Buffer++;
     
     m_Buffer->vertex = appm::vec3(position.x, position.y + size.y, position.z);
-    m_Buffer->color = color;
+    m_Buffer->color = c;
     m_Buffer++;
     
     m_Buffer->vertex = appm::vec3(position.x + size.x, position.y + size.y, position.z);
-    m_Buffer->color = color;
+    m_Buffer->color = c;
     m_Buffer++;
     
     m_Buffer->vertex = appm::vec3(position.x + size.x, position.y, position.z);
-    m_Buffer->color = color;
+    m_Buffer->color = c;
     m_Buffer++;
     
     m_IndexCount += 6;
