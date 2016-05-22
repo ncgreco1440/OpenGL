@@ -38,7 +38,7 @@ void Game::run()
 #if BATCH_RENDERER
         Sprite(x, y, 0.04f, 0.04f, newclr));
 #else
-        StaticSprite(x, y, 0.04f, 0.04f, newclr, shader));
+        StaticSprite(x, y, 0.08f, 0.08f, newclr, shader));
 #endif
         }
     }
