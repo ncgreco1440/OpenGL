@@ -462,9 +462,7 @@ struct vec3
  *************************************************************************/
     bool operator==(const vec3& vec) const
     {
-        if(this->x == vec.x && this->y == vec.y && this->z == vec.z)
-            return true;
-        return false;
+		return this->x == vec.x && this->y == vec.y && this->z == vec.z;
     }
     
     bool operator!=(const vec3& vec) const
@@ -476,7 +474,7 @@ struct vec3
  *************************************************************************/
     vec3& operator=(const vec3& vec)
     {
-        if(*this != vec)
+        if(this != &vec)
         {
             this->x = vec.x;
             this->y = vec.y;
