@@ -9,6 +9,7 @@
  * Columns: Align elements vertically
  */
 
+#include "../vector/vec3.h"
 #include "../vector/vec4.h"
 
 struct mat4
@@ -16,7 +17,7 @@ struct mat4
     union
     {
         float elements[16] = {};
-        vec4 columns[4];
+        appm::vec4 columns[4];
     };
     
     mat4(){}
@@ -72,7 +73,7 @@ struct mat4
     }
     
 // Translation
-    static mat4 translation(const vec3& translation)
+    static mat4 translation(const appm::vec3& translation)
     {
         mat4 result(1.0f);
         
@@ -84,7 +85,7 @@ struct mat4
     }
 
 // Scale
-    static mat4 scale(const vec3& scale)
+    static mat4 scale(const appm::vec3& scale)
     {
         mat4 result(1.0f);
         
@@ -96,7 +97,7 @@ struct mat4
     }
     
 // Rotation
-    static mat4 rotation(const float angle, const vec3& axis)
+    static mat4 rotation(const float angle, const appm::vec3& axis)
     {
         mat4 result(1.0f);
         
@@ -171,6 +172,47 @@ struct mat4
 			this->elements[i] = rhs.elements[i];
 		return *this;
 	}
+
+/********* Vector Multiplication ************************************************/
+
+	appm::vec3 multiply(const appm::vec3& rhs) const
+	{
+		return appm::vec3(
+			columns[0].x * rhs.x + columns[1].x * rhs.y + columns[2].x * rhs.z + columns[3].x,
+			columns[0].y * rhs.x + columns[1].y * rhs.y + columns[2].y * rhs.z + columns[3].y,
+			columns[0].z * rhs.x + columns[1].z * rhs.y + columns[2].z * rhs.z + columns[3].z
+		);
+	}
+
+	friend appm::vec3 operator*(const mat4& lhs, const appm::vec3& rhs)
+	{
+		return lhs.multiply(rhs);
+	}
+
+	friend appm::vec3 operator*(const appm::vec3& lhs, const mat4& rhs)
+	{
+		return rhs.multiply(lhs);
+	}
+
+	appm::vec4 multiply(const appm::vec4& rhs) const
+	{
+		return appm::vec4(
+			columns[0].x * rhs.x + columns[1].x * rhs.y + columns[2].x * rhs.z + columns[3].x * rhs.w,
+			columns[0].y * rhs.x + columns[1].y * rhs.y + columns[2].y * rhs.z + columns[3].y * rhs.w,
+			columns[0].z * rhs.x + columns[1].z * rhs.y + columns[2].z * rhs.z + columns[3].z * rhs.w,
+			columns[0].w * rhs.x + columns[1].w * rhs.y + columns[2].w * rhs.z + columns[3].w * rhs.w
+ 		);
+	}
+
+	friend appm::vec4 operator*(const mat4& lhs, const appm::vec4& rhs)
+	{
+		return lhs.multiply(rhs);
+	}
+
+	friend appm::vec4 operator*(const appm::vec4& lhs, const mat4& rhs)
+	{
+		return rhs.multiply(lhs);
+	}
     
     friend std::ostream& operator<<(std::ostream& os, const mat4& mat)
     {
@@ -187,5 +229,6 @@ struct mat4
         return os;
     }
 };
+
 
 #endif

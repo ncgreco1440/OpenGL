@@ -7,12 +7,12 @@ namespace graphics
     {
         m_Shader->enable();
         m_Shader->setUniform("pr_matrix", m_Projection);
-        m_Shader->disable();
+        //m_Shader->disable();
     }
 
     Layer::~Layer()
     {
-        delete m_Shader;
+        //delete m_Shader;
         delete m_Renderer;
         for(Renderable2D* x : m_RenderableObjects)
             delete x;
@@ -26,12 +26,19 @@ namespace graphics
     void Layer::render()
     {
         m_Shader->enable();
-        
-        for(Renderable2D* x : m_RenderableObjects)
-            m_Renderer->submit(x);
-        
+		m_Renderer->begin();
+		
+		for (Renderable2D* x : m_RenderableObjects)
+		{
+			//m_Renderer->pop();
+			m_Renderer->push(appm::mat4::translation(appm::vec3(-5, 0, 0)));
+			m_Renderer->submit(x);
+			m_Renderer->pop();
+		}
+
+		m_Renderer->end();
         m_Renderer->flush();
-        m_Shader->disable();
+        //m_Shader->disable();
     }
 
 }

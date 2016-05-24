@@ -20,7 +20,7 @@ namespace graphics
         appm::mat4 m_Projection;
     private:
     public:
-        Layer();
+        //Layer();
         virtual ~Layer();
         virtual void add(Renderable2D* renderable);
         virtual void render();

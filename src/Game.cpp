@@ -2,8 +2,9 @@
 #include <GameConfig/Input.h>
 #include <vector>
 #include <utils/Timer.h>
+#include <Layers/TileLayer.h>
 
-#define BATCH_RENDERER 1
+#define TEST_50K_SPRITES 0
 
 Game::Game()
 {
@@ -24,63 +25,36 @@ void Game::run()
     
     Shader shader("Assets/Shaders/test.vert", "Assets/Shaders/test.frag");
     shader.enable();
-    appm::mat4 ortho = appm::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-    shader.setUniform("pr_matrix", ortho);
-//    appm::mat4 model = appm::mat4::rotation(-55.0f, appm::vec3(1.0f, 0.0f, 0.0f));
-//    appm::mat4 view = appm::mat4::translation(appm::vec3(0.0f, 0.0f, -5.0f));
-//    appm::mat4 proj = appm::mat4::perspective(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
-    
-    std::vector<Renderable2D*> sprites;
-    SRNG::fRandomGen<float> ranClr(0.0f, 1.0f);
-    
-    for(float y = 0; y < 9.0f; y+=0.05)
-    {
-        for(float x = 0; x < 16.0f; x+= 0.05)
-        {
-         appm::vec4 newclr(ranClr.random_floating(), ranClr.random_floating(), ranClr.random_floating(), 1.0f);
-            sprites.push_back(new
-#if BATCH_RENDERER
-        Sprite(x, y, 0.04f, 0.04f, newclr));
-#else
-        StaticSprite(x, y, 0.9f, 0.9f, newclr, shader));
-#endif
-        }
-    }
-
-
-#if BATCH_RENDERER
-    Render renderer;
-#else
-    Simple2DRenderer renderer;
-#endif
-    
-    shader.setUniform("light_pos", appm::vec2(4.5f, 1.5f));
-    shader.setUniform("colour", appm::vec4(0.0, 0.5, 1.0, 1.0));
-
+	shader.setUniform("light_pos", appm::vec2(4.5f, 1.5f));
 	utils::Timer timer;
+	graphics::TileLayer layer(&shader);
+	std::vector<Renderable2D*> sprites;
+	SRNG::fRandomGen<float> ranClr(0.0f, 1.0f);
+#if TEST_50K_SPRITES
+	for (float y = -9.0f; y < 9.0f; y += 0.1)
+	{
+		for (float x = -16.0f; x < 16.0f; x += 0.1)
+		{
+			appm::vec4 newclr(ranClr.random_floating(), ranClr.random_floating(), ranClr.random_floating(), 1.0f);
+			layer.add(new Sprite(x, y, 0.9f, 0.9f, newclr));
+		}
+	}
+#else
+	Sprite * button = new Sprite(-15.0f, 5.0f, 6.0f, 3.0f, appm::vec4(1, 1, 1, 1));
+	layer.add(button);
+	//layer.push(appm::mat4(button->getPosition));
+	layer.add(new Sprite(0.5f, 0.5f, 5.0f, 2.0f, appm::vec4(1, 0, 1, 1)));
+	//layer.pop();
+#endif
+	//layer.add(new Sprite(0, 0, 2, 2, appm::vec4(0.7f, 0.2f, 0.8f, 1.0f)));
 	// Game Initialization
     while (!glfwWindowShouldClose(_window.getGLFWwindowHandle()))
     {
         glfwPollEvents();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		appm::mat4 mat = appm::mat4::translation(appm::vec3(5, 5, 5));
-		mat = mat * appm::mat4::rotation(timer.elapsed() * 50.0f, appm::vec3(0, 0, 1));
-		mat = mat * appm::mat4::translation(appm::vec3(-5, -5, -5));
-
-		shader.setUniform("ml_matrix", mat);
-        shader.setUniform("light_pos", appm::vec2((Input::m_xPos * 16.0f / 960.0f),
-                                                  (9.0f - Input::m_yPos * 9.0f / 540.0f)));
-#if BATCH_RENDERER
-        renderer.begin();
-#endif
-		for (auto sp : sprites)
-			renderer.submit(sp);
-        
-#if BATCH_RENDERER
-        renderer.end();
-#endif
-        renderer.flush();
+		shader.setUniform("light_pos", appm::vec2((Input::m_xPos * 32.0f / 960.0f - 16.0f),
+			(9.0f - Input::m_yPos * 18.0f / 540.0f)));
+		layer.render();
 		update();
 		timer();
     }
