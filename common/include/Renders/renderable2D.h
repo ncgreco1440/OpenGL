@@ -12,8 +12,9 @@
 struct VertexData                   // Size MUST be a multiple of 4 due to padding
 {
     appm::vec3 vertex;              // 12 bytes +
-    appm::vec4 color;               // 16 bytes +
-};                                  // 28 bytes =
+    //appm::vec4 color;               // 16 bytes +
+	unsigned int color;				// 4 bytes +
+};                                  // 16 bytes =
 
 class Renderable2D
 {
