@@ -2,7 +2,6 @@
 #include <GameConfig/Input.h>
 #include <vector>
 #include <utils/Timer.h>
-#include <time.h>
 
 #define BATCH_RENDERER 1
 
@@ -27,21 +26,23 @@ void Game::run()
     shader.enable();
     appm::mat4 ortho = appm::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
     shader.setUniform("pr_matrix", ortho);
+//    appm::mat4 model = appm::mat4::rotation(-55.0f, appm::vec3(1.0f, 0.0f, 0.0f));
+//    appm::mat4 view = appm::mat4::translation(appm::vec3(0.0f, 0.0f, -5.0f));
+//    appm::mat4 proj = appm::mat4::perspective(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
     
     std::vector<Renderable2D*> sprites;
     SRNG::fRandomGen<float> ranClr(0.0f, 1.0f);
-	srand(time(NULL));
     
     for(float y = 0; y < 9.0f; y+=0.05)
     {
         for(float x = 0; x < 16.0f; x+= 0.05)
         {
-            appm::vec4 newclr(ranClr.random_floating(), 0.0f, 1.0f, 1.0f);
+         appm::vec4 newclr(ranClr.random_floating(), ranClr.random_floating(), ranClr.random_floating(), 1.0f);
             sprites.push_back(new
 #if BATCH_RENDERER
         Sprite(x, y, 0.04f, 0.04f, newclr));
 #else
-        StaticSprite(x, y, 0.04f, 0.04f, newclr, shader));
+        StaticSprite(x, y, 0.9f, 0.9f, newclr, shader));
 #endif
         }
     }
@@ -75,7 +76,7 @@ void Game::run()
 #endif
 		for (auto sp : sprites)
 			renderer.submit(sp);
-           
+        
 #if BATCH_RENDERER
         renderer.end();
 #endif
@@ -101,4 +102,5 @@ void Game::update()
     //cout << "Cursor at (" << Input::m_xPos << ", " << Input::m_yPos << ")" << endl;
 
 	glfwSwapBuffers(_window.getGLFWwindowHandle());
+    glfwSwapInterval(0);
 }
