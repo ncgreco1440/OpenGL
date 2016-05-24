@@ -36,12 +36,12 @@ void Game::run()
     {
         for(float x = 0; x < 16.0f; x+= 0.05)
         {
-            appm::vec4 newclr(rand() % 1000 / 1000.0f, 0.0f, 1.0f, 1.0f);
+            appm::vec4 newclr(ranClr.random_floating(), 0.0f, 1.0f, 1.0f);
             sprites.push_back(new
 #if BATCH_RENDERER
         Sprite(x, y, 0.04f, 0.04f, newclr));
 #else
-        StaticSprite(x, y, 0.4f, 0.4f, newclr, shader));
+        StaticSprite(x, y, 0.04f, 0.04f, newclr, shader));
 #endif
         }
     }

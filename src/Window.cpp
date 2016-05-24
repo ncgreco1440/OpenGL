@@ -25,8 +25,8 @@ GLFWwindow * Window::getGLFWwindowHandle() const
 
 void Window::displayGraphicalInfo() const
 {
-    cout << "=================== Graphical Info =======================\n"
-        << "GPU Vendor: " << glGetString(GL_VENDOR) << "\n"
+	cout << "=================== Graphical Info =======================\n"
+		<< "GPU Vendor: " << glGetString(GL_VENDOR) << "\n"
         << "GPU: " << glGetString(GL_RENDERER) << "\n"
         << "OpenGL Version: " << glGetString(GL_VERSION) << "\n"
         << "GLSL Version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << endl;
