@@ -613,9 +613,7 @@ struct vec4
  *************************************************************************/
     bool operator==(const vec4& vec) const
     {
-        if(this->x == vec.x && this->y == vec.y && this->z == vec.z && this->w == vec.w)
-            return true;
-        return false;
+		return this->x == vec.x && this->y == vec.y && this->z == vec.z && this->w == vec.w;
     }
     
     bool operator!=(const vec4& vec) const
@@ -627,7 +625,7 @@ struct vec4
  *************************************************************************/
     vec4& operator=(const vec4& vec)
     {
-        if(*this != vec)
+        if(this != &vec)
         {
             this->x = vec.x;
             this->y = vec.y;

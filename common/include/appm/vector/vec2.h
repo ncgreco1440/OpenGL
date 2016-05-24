@@ -274,9 +274,7 @@ struct vec2
 // Equality
     bool operator==(const vec2& vec)
     {
-        if(this->x == vec.x && this->y == vec.y)
-            return true;
-        return false;
+		return this->x == vec.x && this->y == vec.y;
     }
     
     bool operator!=(const vec2& vec)
@@ -286,7 +284,7 @@ struct vec2
 // Assignment
     vec2& operator=(const vec2& vec)
     {
-        if(*this != vec)
+        if(this != &vec)
         {
             this->x = vec.x;
             this->y = vec.y;

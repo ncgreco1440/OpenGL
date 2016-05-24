@@ -32,15 +32,15 @@ void Game::run()
     
     std::vector<Renderable2D*> sprites;
     SRNG::fRandomGen<float> ranClr(0.0f, 1.0f);
-  
-    for(float y = 0; y < 9.0f; y+=0.9)
+    
+    for(float y = 0; y < 9.0f; y+=0.05)
     {
-        for(float x = 0; x < 16.0f; x+= 0.9)
+        for(float x = 0; x < 16.0f; x+= 0.05)
         {
          appm::vec4 newclr(ranClr.random_floating(), ranClr.random_floating(), ranClr.random_floating(), 1.0f);
             sprites.push_back(new
 #if BATCH_RENDERER
-        Sprite(x, y, 0.9f, 0.9f, newclr));
+        Sprite(x, y, 0.04f, 0.04f, newclr));
 #else
         StaticSprite(x, y, 0.9f, 0.9f, newclr, shader));
 #endif
@@ -62,7 +62,7 @@ void Game::run()
     while (!glfwWindowShouldClose(_window.getGLFWwindowHandle()))
     {
         glfwPollEvents();
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		appm::mat4 mat = appm::mat4::translation(appm::vec3(5, 5, 5));
 		mat = mat * appm::mat4::rotation(timer.elapsed() * 50.0f, appm::vec3(0, 0, 1));
